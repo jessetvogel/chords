@@ -1,0 +1,9 @@
+HTML:
+
+<!-- TITLE -->:           The title of the page
+<!-- BODY -->:            The actual contents
+
+CSS:
+
+/* FONT-FAMILY */         The font family that is used
+/* CHORD-COLOR */         The color that is used for the chords 
