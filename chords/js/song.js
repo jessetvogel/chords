@@ -1,18 +1,9 @@
-var song = {
+function Song() {
+  // Properties
+  this.couplets = [];
 
-  create: function () {
-    return {
-      elements: []
-    };
-  },
-
-  addCouplet: function (s, c) {
-    if(couplet.empty(c)) return;
-    s.elements.push(c);
-  },
-
-  addHeader: function (s, h) {
-    s.elements.push(h);
-  }
-
+  // Methods
+  this.addCouplet = function (couplet) {
+    this.couplets.push(couplet);
+  };
 };

@@ -1,25 +1,28 @@
-div.couplet-header {
+div.couplet {
+  margin-bottom: 15pt;
+}
+
+pre {
+  border: 0;
+  background-color: transparent;
+  padding: 0px;
+  margin: 0px;
+}
+
+pre.lyrics, pre.chords, pre.couplet-header {
+  font-family: Menlo;
+  font-size: 10pt;
+  line-height: 15pt;
+}
+
+pre.couplet-header {
   font-weight: bold;
-  margin-bottom: 16pt;
-  font-family: Menlo;
-  font-size: 8pt;
 }
 
-span.lyrics {
-  line-height: 24pt;
-  font-family: Menlo;
-  font-size: 8pt;
+pre.lyrics {
+
 }
 
-span.chord-wrapper {
-  position: relative;
-}
-
-span.chord {
-  position: absolute;
-  left: 0px;
-  bottom: 12pt;
+pre.chords {
   color: #6bc8fc;
-  font-family: Menlo;
-  font-size: 8pt;
 }

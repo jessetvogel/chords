@@ -1,41 +1,68 @@
 function render(song) {
 
+  // Clear content
+  $('#content').html('');
+
   var pageContent = $('<div>').addClass('page-content');
   var page = $('<div>').addClass('page').append(pageContent);
   $('#content').append(page);
 
-  for(var i = 0;i < song.elements.length;i ++) {
-    var element = song.elements[i];
-    var divElement;
-    switch(element.type) {
-      case 'header':
-        divElement = $('<div>').addClass('couplet-header').text(element.text);
-        break;
+  // Add all couplets
+  for(var i = 0;i < song.couplets.length;i ++) {
+    var couplet = song.couplets[i];
+    var divCouplet = $('<div>').addClass('couplet');
 
-      case 'couplet':
-        divElement = $('<div>').addClass('couplet');
-        for(var j = 0;j < element.lines.length;j ++) {
-          var line = element.lines[j];
-          var divLine = $('<div>').addClass('line');
-          for(var k = 0;k < line.length;k ++) {
-            var part = line[k];
-            if(typeof part === 'string')
-              divLine.append($('<span>').addClass('lyrics').text(part));
-            else
-              divLine.append($('<span>').addClass('chord-wrapper').append($('<span>').addClass('chord').text(part.value)));
-          }
-          divElement.append(divLine);
+    // Add a header if provided
+    if(couplet.header != null)
+      divCouplet.append($('<pre>').addClass('couplet-header').text('[' + couplet.header + ']'));
+
+    // Add all lines
+    for(var j = 0;j < couplet.lines.length;j ++) {
+
+      var line = couplet.lines[j];
+
+      // Check if a line consists only of chords
+      var onlyChords = true;
+      for(var k = 0;k < line.length;k ++) { if(typeof line[k] === 'string' && !(/^\s*$/g.test(line[k]))) { onlyChords = false; break; } }
+
+      if(onlyChords) {
+        var preChords = $('<pre>').addClass('chords').append(line[0].toString());
+        for(var k = 1;k < line.length;k ++) {
+            preChords.append('   ' + line[k].toString());
         }
-        break;
+        divCouplet.append(preChords);
+        continue;
+      }
+
+      // Otherwise, ...
+      var preChords = $('<pre>').addClass('chords');
+      var preLyrics = $('<pre>').addClass('lyrics');
+
+      var position = 0;
+      for(var k = 0;k < line.length;k ++) {
+        var part = line[k];
+        if(typeof part === 'string') {
+          preLyrics.append(part);
+          position += part.length;
+        }
+        else {
+          preChords.append(new Array(position + 1).join(' '));
+          var chord = part.toString();
+          preChords.append(chord);
+          position = - chord.length;
+        }
+      }
+      divCouplet.append(preChords);
+      divCouplet.append(preLyrics);
     }
 
-    pageContent.append(divElement);
+    pageContent.append(divCouplet);
     if(overflown(page.get(0))) {
-      divElement.detach();
+      divCouplet.detach();
       pageContent = $('<div>').addClass('page-content');
       page = $('<div>').addClass('page').append(pageContent);
       $('#content').append(page);
-      pageContent.append(divElement);
+      pageContent.append(divCouplet);
     }
   }
 }

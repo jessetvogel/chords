@@ -1,27 +1,31 @@
-var couplet = {
+function Couplet() {
 
-  create: function () {
-    return {
-      type: 'couplet',
-      lines: []
-    };
-  },
+  // Properties
+  this.type = 'couplet';
+  this.header = null;
+  this.lines = [];
 
-  empty: function (c) { return c.lines.length == 0; },
+  // Methods
+  this.empty = function () {
+    return this.lines.length == 0;
+  }
 
-  addLine: function (c, l) {;
-    var line = [];
-    var remainder = l;
+  this.setHeader = function(header) {
+    this.header = header;
+  }
+
+  this.addLine = function (line) {
+    var parts = [];
+    var remainder = line;
 
     var match;
     while((match = /^(.*?)\[([^\]]+)\](.*)$/g.exec(remainder)) != null) {
-      line.push(match[1]);
-      line.push(chord.create(match[2]));
+      parts.push(match[1]);
+      parts.push(new Chord(match[2]));
       remainder = match[3];
     }
-    if(remainder != '') line.push(remainder);
-
-    c.lines.push(line);
-  }
-
+    if(remainder != '') parts.push(remainder);
+    this.lines.push(parts);
+  };
+  
 };
