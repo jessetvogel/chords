@@ -65,4 +65,10 @@ function render(song) {
       pageContent.append(divCouplet);
     }
   }
+
+  update();
+}
+
+function update() {
+  $('pre.chords').css( { color: chordColor } );
 }

@@ -49,12 +49,27 @@ label:hover {
   display: none;
 }
 
+#color-input {
+  visibility: hidden;
+}
+
 /* ---------------- */
 
 #content {
   overflow: auto;
   width:100%;
   margin-top: 48px;
+}
+
+div.message {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 128px;
+  width: 768px;
+  text-align: center;
+  font-size: 24pt;
+  font-weight: bold;
+  color: #dddddd;
 }
 
 div.page {

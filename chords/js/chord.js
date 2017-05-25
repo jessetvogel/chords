@@ -1,16 +1,15 @@
 function Chord(str) {
 
   // Properties
-  var info = getChordInfo(str);
-  this.root = info.root;
-  this.additional = info.additional;
-  this.bass = info.bass;
+  this.str = str;
+  this.info = getChordInfo(str);
 
   // Methods
   this.toString = function () {
-    var chord = transposeNote(this.root);
-    if(this.additional != null) chord += this.additional;
-    if(this.bass != null) chord += '/' + transposeNote(this.bass);
+    if(this.info == null) return '?';
+    var chord = transposeNote(this.info.root);
+    if(this.info.additional != null) chord += this.info.additional;
+    if(this.info.bass != null) chord += '/' + transposeNote(this.info.bass);
     return chord;
   }
 };
@@ -22,7 +21,7 @@ function getChordInfo(str) {
     bass: null
   };
 
-  var regex = /^([A-G](?:\#|b)?)(m|7|m7|min|maj|dim|aug|min7|maj7|dim7|aug7|sus|sus2|sus4|add2|add9)?(?:\/([A-G](?:\#|b)?))?$/;
+  var regex = /^([A-G](?:\#|b)?)((?:m|min|maj|dim|aug|sus|add)?(?:2|3|4|5|6|7|8|9|10|11|12|13)?)(?:\/([A-G](?:\#|b)?))?$/;
   var match = regex.exec(str);
   if(match == null) return null;
 

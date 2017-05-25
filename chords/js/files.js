@@ -18,8 +18,6 @@ function handleFile(event) {
     // Render
     song = parser.song;
     render(song);
-
-    console.log(parser);
   }
   fileReader.readAsText(file);
 
