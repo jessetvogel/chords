@@ -1,0 +1,25 @@
+div.couplet-header {
+  font-weight: bold;
+  margin-bottom: 16pt;
+  font-family: Menlo;
+  font-size: 8pt;
+}
+
+span.lyrics {
+  line-height: 24pt;
+  font-family: Menlo;
+  font-size: 8pt;
+}
+
+span.chord-wrapper {
+  position: relative;
+}
+
+span.chord {
+  position: absolute;
+  left: 0px;
+  bottom: 12pt;
+  color: #6bc8fc;
+  font-family: Menlo;
+  font-size: 8pt;
+}
