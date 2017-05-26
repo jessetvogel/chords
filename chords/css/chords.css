@@ -11,7 +11,7 @@ pre {
 }
 
 pre.lyrics, pre.chords, pre.couplet-header {
-  font-family: Menlo, Courier New;
+  font-family: Menlo;
   font-size: 10pt;
   line-height: 15pt;
 }
@@ -25,6 +25,5 @@ pre.lyrics {
 }
 
 pre.chords {
-  font-weight: bold;
   color: #6bc8fc;
 }
