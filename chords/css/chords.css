@@ -25,5 +25,6 @@ pre.lyrics {
 }
 
 pre.chords {
+  font-weight: bold;
   color: #6bc8fc;
 }
